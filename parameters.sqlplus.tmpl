@@ -1,0 +1,33 @@
+-- -----------------------------------------------------------------------------
+-- Copyright 2017 Sergey Rudyshin. All rights reserved.
+--
+-- Licensed under the Apache License, Version 2.0 (the "License");
+-- you may not use this file except in compliance with the License.
+-- You may obtain a copy of the License at
+--
+--    http://www.apache.org/licenses/LICENSE-2.0
+--
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS,
+-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-- See the License for the specific language governing permissions and
+-- limitations under the License.
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- this template is evaluated in install_sqlplus.sh
+-- -----------------------------------------------------------------------------
+
+-- the passwords should be before "echo on" otherwise they will be displayed in the log
+define THE_USER_PASSWORD=\"$THE_USER_PASSWORD\"
+
+set echo on 
+set SQLBLANKLINES on serveroutput on size unlimited
+whenever sqlerror exit sql.sqlcode
+whenever oserror  exit failure
+
+define THE_USER=\"$THE_USER\"
+
+define VERSION_CURRENT=\"$(awk '$1 == "current" {print $2}' version)\"
+define VERSION_BASE=\"$(awk '$1 == "base" {print $2}' version)\"
+

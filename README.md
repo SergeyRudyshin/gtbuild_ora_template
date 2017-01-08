@@ -1,0 +1,1 @@
+# gtbuild_ora_template
